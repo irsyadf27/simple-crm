@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block title %}User Registration{% endblock %}
+
+{% block content %}
+
+  <form action="{% url 'register' %}" method="post" class="form">
+    {% csrf_token %}
+    
+    {% for field in form %}
+    <label for="{{ field.auto_id }}">{{ field.label_tag }}</label>
+	    {% if field.field.required %}
+	        <span class="required text-danger">*</span>
+	    {% endif %}
+
+    	{% bootstrap_field field show_label=False %}
+        {% if field.help_text %}
+          <small class="text-muted">{{ field.help_text }}</small>
+        {% endif %}
+
+	{% endfor %}
+
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Register</button>
+    {% endbuttons %}
+
+  </form>
+{% endblock %}

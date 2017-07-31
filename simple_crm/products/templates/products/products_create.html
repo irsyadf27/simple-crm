@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block title %} Create Product {% endblock %}
+
+
+{% block content %}
+  <h1 class="page-header">Create Product</h1>
+  <br/>
+  
+  <form action="{{ request.path }}" method="post" class="form">
+    {% csrf_token %}
+    
+    {% bootstrap_form form %}
+
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Save</button>
+    {% endbuttons %}
+
+  </form>
+
+{% endblock %}
